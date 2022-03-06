@@ -1,0 +1,43 @@
+{# ::::::::Inheritance Concept::::::::::::::::::: #}
+{% extends 'core/base.html' %}
+
+{% block title %}Signup{% endblock title %}
+
+{% block mycss %}
+    <style>
+        .error{
+            color: red;
+        }
+
+        .success{
+            color: green;
+        }
+
+        .info{
+            color: darkblue;
+        }
+    </style>
+{% endblock mycss %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+
+    {% if messages %}
+        <ul class="messages">
+                {% for msg in messages %}
+                    <p {% if msg.tags %} class="{{msg.tags}}" {% endif %}>{{msg}}</p>
+                {% endfor %}
+        </ul>
+    {% endif %}    
+{% endblock content %}

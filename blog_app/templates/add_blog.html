@@ -1,0 +1,12 @@
+{# ::::::::::::Inheritance Concept:::::::::::::::::::::::: #}
+{% extends 'core/base.html' %}
+
+{% block title %}Add Page{% endblock title %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit" class="btn btn-success">
+    </form>
+{% endblock content %}

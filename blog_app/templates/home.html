@@ -1,0 +1,25 @@
+{# ::::::Inheritance Concept:::::::::::::::::::: #}
+{% extends 'core/base.html' %}
+
+{% block title %}Home Page{% endblock title %}
+
+{% block content %}
+    {% if form %}
+        {% for item in form %}
+            <h3>{{item.title}}</h3>
+            <h5>{{item.content}}</h5>
+            <small>{{item.date_posted}} - {{item.author}}</small>
+
+            {% if user.is_superuser or user.id == item.author.id %}
+                <a href="{% url 'edit' id=item.id %}">edit</a>
+                <a href="{% url 'delete' id=item.id %}">delete</a>
+            {% endif %}
+            <hr>
+        {% endfor %}
+        {% else %}
+        <h3> No any item found!!!</h3>
+    {% endif %}
+    
+    <a href="{% url 'add' %}" class="btn btn-primary">Add</a>
+
+{% endblock content %}

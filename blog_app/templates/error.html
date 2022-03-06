@@ -1,0 +1,25 @@
+{# :::::::Inheritance Concept::::::::: #}
+{% extends 'core/base.html'%}
+
+{% block mycss %}
+    <style>
+        .error{
+            color: red;
+        }
+
+        .success{
+            color: green;
+        }
+        
+    </style>
+{% endblock mycss%}
+
+{% block title %}Error{% endblock title %}
+
+{% block content %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p {% if msg.tags %} class="{{msg.tags}}" {% endif %}>{{msg}}</p>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}
